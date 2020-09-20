@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Nayan Idiots Backend</title>
+<style>
+.validationError {
+	color: red;
+}
+</style>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css" />
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron text-center">
+			<h1>Add Category</h1>
+		</div>
+	</div>
+
+	<div class="container">
+		<div th:if="${message}" th:text="${message}"
+			th:class="${'alert ' + alertClass}" class="alert alert-primary">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	</div>
+
+	<div class="container">
+		<form method="POST" th:object="${category}" action="/category/new">
+			<div class="row">
+				<div class="form-group col-md-6">
+					<p>
+						<input type="hidden" th:field="*{id}" value="*{id}">
+					</p>
+					<label for="name" class="col-form-label">Name</label> <input
+						type="text" th:field="*{name}" class="form-control" id="name"
+						placeholder="Name"> <span
+						th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+						class="text-danger"></span>
+				</div>
+
+				<div class="form-group col-md-8">
+					<button type="submit" class="btn btn-success">Submit</button>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+	<div class="container ">
+		<a href="http://localhost:8080/category/list" class="btn btn-link"
+			role="button">Category List</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Nayan Idiots Backend</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css" />
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron text-center">
+			<h1>Category Form</h1>
+		</div>
+	</div>
+	<div class="container">
+		<div th:if="${message}" th:text="${message}"
+			th:class="${'alert ' + alertClass}" class="alert alert-primary alert-dismissible fade show" role="alert">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	</div>
+
+	<div class="container" style="display: flex; justify-content: flex-end">
+
+	</div>
+	<br></br>
+	<div class="container text-center">
+		<p class="my-5" style="display: flex; justify-content: flex-start">
+			<a href="http://localhost:8080/category/new" class="btn btn-success"
+				role="button">Add New Category</a>
+		</p>
+		<div class="table-responsive">
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="category : ${categories}">
+						<td><span th:text="${category.id}"></span></td>
+						<td><span th:text="${category.name}"></span></td>
+						<td><a th:href='@{/category/edit/{id}(id=${category.id})}'
+							class="btn btn-secondary" role="button">Edit</a>&nbsp;</td>
+						<td><a th:href='@{/category/delete/{id}(id=${category.id})}'
+							class="btn btn-danger" role="button">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+</body>
+</html>
